@@ -102,7 +102,6 @@ class EmployeeController extends Controller
 
         $exam = Exam::find($exam_id);
         $record = Mcq_result::where('exam_id', $exam_id)->where('question_id', $question_id)->whereNull('answer')->whereNull('check')->first();
-
         if($record != null){
             $record->answer = $request->answer;
             $record->check = true;
@@ -123,7 +122,7 @@ class EmployeeController extends Controller
         if($question == null ){
             $admin_answer = $exam->questions;
             $user_answer = Mcq_result::where('exam_id', $exam->id)->get();
-            dd($admin_answer, $user_answer);
+            // dd($admin_answer, $user_answer);
 
             return view('userdashboard.exams.completed')->with([
                 'admin_answer' => $admin_answer, 'user_answer' => $user_answer

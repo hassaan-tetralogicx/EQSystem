@@ -43,7 +43,9 @@
             </div>
         </div>
     </div>
+    @if (count($subjects)>0)
     <div class="card card-bordered card-preview">
+
         <table class="table table-tranx">
             <thead>
                 <tr class="tb-tnx-head">
@@ -61,8 +63,9 @@
                     </th>
                 </tr>
             </thead>
+
             <tbody>
-                @if (count($subjects)>0)
+
                 <tr class="tb-tnx-item">
                     <td class="tb-tnx-id ">
                         <a href="#"><span class="d-none"></span></a>
@@ -129,12 +132,15 @@
                     </td>
                     @endforeach
                 </tr>
-                @else
-                    No subject is registered.
-                @endif
+
             </tbody>
+
         </table>
+
     </div><!-- .card-preview -->
+    @else
+        <small class="mt-5">No subject is registered.</small>
+    @endif
 </div>
 
 @endsection
