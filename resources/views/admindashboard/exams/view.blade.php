@@ -31,28 +31,25 @@
                         <button type="submit" class="btn btn-info mt-2 float-right">Invite</button>
                     </form>
                 </div><!-- .nk-block-head -->
-                <div class="profile-ud-list pt-4">
+                <div class="profile-ud-list pt-3">
                     <div class="profile-ud-item">
                         <div class="profile-ud wider">
                             <span class="profile-ud-label">Exam Title</span>
                             <span class="profile-ud-value">{{ $exam->title }}</span>
                         </div>
                     </div>
-
                     <div class="profile-ud-item">
                         <div class="profile-ud wider">
                             <span class="profile-ud-label">Subject</span>
                             <span class="profile-ud-value">{{ $exam->subject->title }}</span>
                         </div>
                     </div>
-
                     <div class="profile-ud-item">
                         <div class="profile-ud wider">
                             <span class="profile-ud-label">Start Time <em class="icon ni ni-alarm-alt " ></em></span>
                             <span class="profile-ud-value">{{ date('m/d/Y | h:i a', strtotime($exam->start_time)) }}</span>
                         </div>
                     </div>
-
                     <div class="profile-ud-item">
                         <div class="profile-ud wider">
                             <span class="profile-ud-label">End Time <em class="icon ni ni-alarm-alt " ></em></span>

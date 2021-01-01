@@ -63,9 +63,7 @@
                     </th>
                 </tr>
             </thead>
-
             <tbody>
-
                 <tr class="tb-tnx-item">
                     <td class="tb-tnx-id ">
                         <a href="#"><span class="d-none"></span></a>
@@ -132,9 +130,7 @@
                     </td>
                     @endforeach
                 </tr>
-
             </tbody>
-
         </table>
 
     </div><!-- .card-preview -->
