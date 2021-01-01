@@ -32,11 +32,12 @@
             <?php $date = Carbon\Carbon::parse($exam->start_time) ?>
             {{-- {{ Carbon\Carbon::now()->setTimezone('Asia/Karachi') }} | {{ $exam->start_time }} --}}
             @role('employee')
-                @if ($date->isPast())
-                    <a href="{{ route('employees.exam', $exam->id) }}" class="btn btn-primary">Start Exam</a>
+            <a href="{{ route('employees.exam', $exam->id) }}" class="btn btn-primary">Start Exam</a>
+                {{-- @if ($date->isPast())
+
                 @else
                     <p><strong>Note: </strong> You'll be able to start exam at your given time.</p>
-                @endif
+                @endif --}}
             @endrole
 
         </div>
