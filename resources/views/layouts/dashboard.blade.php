@@ -10,9 +10,10 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="./images/favicon.png">
     <!-- Page Title  -->
-    <title>EQ</title>
+    <title>EQ System</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('css/dashlite.css') }}">
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'>
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('css/theme.css') }}">
 
@@ -29,28 +30,11 @@
                         <div class="nk-menu-trigger mr-sm-2 d-lg-none">
                             <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="headerNav"><em class="icon ni ni-menu"></em></a>
                         </div>
-                        {{-- <div class="nk-header-brand">
-                            <a href="html/index.html" class="logo-link">
-                                <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                                <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
-                            </a>
-                        </div><!-- .nk-header-brand --> --}}
                         <div class="nk-header-menu" data-content="headerNav">
-                            {{-- <div class="nk-header-mobile">
-                                <div class="nk-header-brand">
-                                    <a href="html/index.html" class="logo-link">
-                                        <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                                        <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
-                                    </a>
-                                </div>
-                                <div class="nk-menu-trigger mr-n2">
-                                    <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="headerNav"><em class="icon ni ni-arrow-left"></em></a>
-                                </div>
-                            </div> --}}
-                            <ul class="nk-menu nk-menu-main">
+                            <ul class="nk-menu nk-menu-main  px-0">
                                 @role('employee')
-                                <li class="nk-menu-item has-sub">
-                                    <a href="#" class="navbar-btn nk-menu-link">
+                                <li class="nk-menu-item pl-0">
+                                    <a href="{{ route('home') }}" class="navbar-btn nk-menu-link">
                                         <span class="nk-menu-text">Home</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
@@ -62,33 +46,38 @@
                                     <!-- .nk-menu-sub -->
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item ">
-                                    <a href="#" class="nk-menu-link ">
+                                    <a href="{{ route('employees.previous-record') }}" class="nk-menu-link ">
                                         <span class="nk-menu-text">Previous Record</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 @endrole
 
                                 @role('admin')
+                                <li class="nk-menu-item pl-0">
+                                    <a href="{{ route('home') }}" class="nk-menu-link">
+                                        <span class="nk-menu-text">Home</span>
+                                    </a>
+                                </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-text">Create Test</span>
+                                        <span class="nk-menu-text">Exams</span>
                                     </a>
                                     <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item has-sub">
+                                        <li class="nk-menu-item ">
                                             <a href="{{ route('exams.index') }}" class="nk-menu-link">
                                                 <span class="nk-menu-text">MCQs</span>
                                             </a>
                                         </li><!-- .nk-menu-item -->
-                                        <li class="nk-menu-item has-sub">
-                                            <a href="#" class="nk-menu-link ">
+                                        <li class="nk-menu-item ">
+                                            <a href="{{ route('exams.subjective') }}" class="nk-menu-link ">
                                                 <span class="nk-menu-text">Subjective Q/A</span>
                                             </a>
                                         </li><!-- .nk-menu-item -->
                                     </ul>
                                 </li>
-                                <li class="nk-menu-item has-sub">
+                                <li class="nk-menu-item">
                                     <a href="{{ route('admin.subject') }}" class="nk-menu-link ">
-                                        <span class="nk-menu-text">Create Subject</span>
+                                        <span class="nk-menu-text">Subjects</span>
                                     </a>
                                 </li>
                                 {{-- <li class="nk-menu-item has-sub">
@@ -108,7 +97,6 @@
                         <div class="nk-header-tools">
                             <ul class="nk-quick-nav">
                                 <!-- .dropdown -->
-
                                 <li class="dropdown user-dropdown order-sm-first">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <div class="user-toggle">
@@ -116,8 +104,12 @@
                                                 <em class="icon ni ni-user-alt"></em>
                                             </div>
                                             <div class="user-info d-none d-xl-block">
-
-                                                <div class="user-status">Administrator</div>
+                                                @role('admin')
+                                                    <div class="user-status">Admin</div>
+                                                @endrole
+                                                @role('employee')
+                                                    <div class="user-status">Employee</div>
+                                                @endrole
                                                 <div class="user-name dropdown-indicator">{{ Auth::user()->name }}</div>
                                             </div>
                                         </div>
@@ -132,7 +124,6 @@
                                                     <span class="lead-text">{{ Auth::user()->name }}</span>
                                                     <span class="sub-text">{{ Auth::user()->email }}</span>
                                                 </div>
-
                                             </div>
                                         </div>
 
@@ -161,8 +152,10 @@
                 </div><!-- .container-fliud -->
             </div>
             <!-- main header @e -->
-            <div class="container">
-                @yield('content')
+            <div class="nk-content nk-content-fluid">
+                <div class="container-xl wide-xl">
+                    @yield('content')
+                </div>
             </div>
             <!-- footer @s -->
             <div class="nk-footer nk-footer-fluid bg-lighter">
@@ -170,13 +163,6 @@
                     <div class="nk-footer-wrap">
                         <div class="nk-footer-copyright"> &copy; 2020 - <a href="#">EQ System</a>
                         </div>
-                        {{-- <div class="nk-footer-links">
-                            <ul class="nav nav-sm">
-                                <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
-                            </ul>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -189,23 +175,27 @@
     <script src="{{ asset('js/bundle.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/charts/gd-invest.js') }}"></script>
-    <script src="{{ asset('js/toastr.min.js') }}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/example-toastr.js')}}"></script>
+    <script src="{{ asset('js/jquery.countdown-timer.js')}}"></script>
+    {{-- <script src="{{ asset('js/jquery.slim.min.js')}}"></script> --}}
+
+
+    {{-- <script src="{{ asset('js/toastr.min.js') }}"></script> --}}
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
     <script>
         @if(Session::has('success'))
-            toastr.options.showMethod = 'slideDown';
-            toastr.options.hideMethod = 'slideUp';
-            toastr.options.closeMethod = 'slideUp';
-            toastr.options.closeButton = true;
-            toastr.success("{{ Session::get('success') }}");
+            // toastr.options.showMethod = 'slideDown';
+            // toastr.options.hideMethod = 'slideUp';
+            // toastr.options.closeMethod = 'slideUp';
+            // toastr.options.closeButton = true;
+            toastr.info("{{ Session::get('success') }}");
         @endif
     </script>
 
     @yield('js')
-
-
     {{-- @endsection --}}
 </body>
 

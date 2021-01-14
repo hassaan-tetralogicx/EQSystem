@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCorrectAnswerIdToQuestionsTable extends Migration
+class AddQuestionTimerToMcqResultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCorrectAnswerIdToQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->text('correct_answer_id')->nullable();
+        Schema::table('mcq_results', function (Blueprint $table) {
+            $table->string('question_timer')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddCorrectAnswerIdToQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
+        Schema::table('mcq_results', function (Blueprint $table) {
             //
         });
     }

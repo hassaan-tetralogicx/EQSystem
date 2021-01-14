@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCorrectAnswerIdToQuestionsTable extends Migration
+class AddQuestionMarksToQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddCorrectAnswerIdToQuestionsTable extends Migration
     public function up()
     {
         Schema::table('questions', function (Blueprint $table) {
-            $table->text('correct_answer_id')->nullable();
+            $table->integer('question_marks')->nullable();
         });
     }
 

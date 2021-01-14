@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCorrectAnswerIdToQuestionsTable extends Migration
+class AddExamStatusToExamUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCorrectAnswerIdToQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->text('correct_answer_id')->nullable();
+        Schema::table('exam_user', function (Blueprint $table) {
+            $table->string('exam_status')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddCorrectAnswerIdToQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
+        Schema::table('exam_user', function (Blueprint $table) {
             //
         });
     }

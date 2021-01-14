@@ -93,7 +93,7 @@
                         <div class="card-inner card-inner-lg">
                             <div class="nk-block-head">
                                 <div class="nk-block-head-content">
-                                    <h4 class="nk-block-title">Register Yourself</h4>
+                                    <h4 class="nk-block-title">Register Yourself!</h4>
                                     {{-- <div class="nk-block-des">
                                         <p>Create New Dashlite Account</p>
                                     </div> --}}
@@ -103,10 +103,8 @@
                                 @csrf
                                 <div class="form-group">
                                     <label class="form-label" for="name">Name</label>
-
                                     <input type="text" name="name" class="form-control form-control-lg @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Enter your name">
                                     {{-- <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> --}}
-
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -114,10 +112,9 @@
                                 @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" for="email">Email or Username</label>
-                                    <input type="email" name="email" class="form-control form-control-lg @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter your email address or username">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="email" name="email" class="form-control form-control-lg @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter your email address">
                                     {{-- <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email"> --}}
-
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -168,51 +165,6 @@
                                 </div>
                             </form>
                             <div class="form-note-s2 text-center pt-4"> Already have an account? <a href="/login"><strong>Sign in instead</strong></a>
-                            </div>
-                            <div class="text-center pt-4 pb-3">
-                                <h6 class="overline-title overline-title-sap"><span>OR</span></h6>
-                            </div>
-                            <ul class="nav justify-center gx-8">
-                                <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Google</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="nk-footer nk-auth-footer-full">
-                    <div class="container wide-lg">
-                        <div class="row g-3">
-                            <div class="col-lg-6 order-lg-last">
-                                <ul class="nav nav-sm justify-content-center justify-content-lg-end">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Terms & Condition</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Privacy Policy</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Help</a>
-                                    </li>
-                                    <li class="nav-item dropup">
-                                        <a class="dropdown-toggle dropdown-indicator has-indicator nav-link" data-toggle="dropdown" data-offset="0,10"><span>English</span></a>
-                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                            <ul class="language-list">
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <img src="./images/flags/english.png" alt="" class="language-flag">
-                                                        <span class="language-name">English</span>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="nk-block-content text-center text-lg-left">
-                                    <p class="text-soft">&copy; 2019 CryptoLite. All Rights Reserved.</p>
-                                </div>
                             </div>
                         </div>
                     </div>
