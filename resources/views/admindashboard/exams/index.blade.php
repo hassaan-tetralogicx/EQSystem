@@ -16,9 +16,10 @@
                         </div>
                     </div>
                 </div>
-                @if (count($exams) > 0)
+
                     <div class="card-inner p-0 border-top">
                         <div class="nk-tb-list nk-tb-orders">
+                            @if (count($exams) > 0)
                             <div class="nk-tb-item nk-tb-head">
                                 <div class="nk-tb-col"><span>#</span></div>
                                 <div class="nk-tb-col"><span>Name</span></div>
@@ -29,7 +30,8 @@
                                 {{-- <div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div> --}}
                                 <div class="nk-tb-col text-right"><span>Action</span></div>
                             </div>
-                            <?php $c=1 ?>
+                            {{-- <?php $c= $exams->perPage() * ($exams->currentPage() - 1); dd($exams->perPage(), $exams->currentPage()) ?> --}}
+                            <?php $c= 1 ?>
                             @foreach ($exams as $exam)
 
                             <div class="nk-tb-item text-body">
@@ -43,10 +45,10 @@
                                     <span >{{ $exam->subject->title }}</span>
                                 </div>
                                 <div class="nk-tb-col tb-col-md">
-                                    <span >{{ date('m/d/Y | h:i a', strtotime($exam->start_time)) }}</span>
+                                    <span >{{ date('m/d/Y | h:i ', strtotime($exam->start_time)) }}</span>
                                 </div>
                                 <div class="nk-tb-col tb-col-lg">
-                                    <span >{{ date('m/d/Y | h:i a', strtotime($exam->end_time)) }}</span>
+                                    <span >{{ date('m/d/Y | h:i ', strtotime($exam->end_time)) }}</span>
                                 </div>
                                 <div class="nk-tb-col text-right">
                                     <div class="dropdown">
@@ -84,15 +86,17 @@
                                 </div>
                             </div>
                             @endforeach
+                            @else
+                                <div class="nk-tb-item bg-lighter p-2">
+                                    <div class="nk-tb-col">
+                                        <span class="text-body ">No exam is created currently.</span>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                @else
-                <div class="nk-tb-item bg-lighter p-2">
-                    <div class="nk-tb-col">
-                        <span class="text-body ">No exam is created currently.</span>
-                    </div>
-                </div>
-                @endif
+                    <p>{{ $exams->links() }}</p>
+
             </div><!-- .card -->
         </div>
     </div>

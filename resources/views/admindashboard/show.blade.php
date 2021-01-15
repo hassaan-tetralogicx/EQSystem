@@ -16,12 +16,14 @@
                         </div>
                     </div>
                 </div>
-                @if (count($users) > 0)
+
                 <div class="card-inner p-0 border-top">
                     <div class="nk-tb-list nk-tb-orders">
+                        @if (count($users) > 0)
                         <div class="nk-tb-item nk-tb-head">
                             <div class="nk-tb-col"><span>#</span></div>
-                            <div class="nk-tb-col text-right"><span>Name</span></div>
+                            <div class="nk-tb-col "><span>Name</span></div>
+                            <div class="nk-tb-col "><span>Created at</span></div>
                             <div class="nk-tb-col text-right"><span>Email</span></div>
                         </div>
                         <?php $i = 1 ?>
@@ -31,23 +33,28 @@
                             <div class="nk-tb-col">
                                 <span class="text-body">{{ $i++ }}</span>
                             </div>
-                            <div class="nk-tb-col text-right">
+
+                            <div class="nk-tb-col ">
                                <strong><span class="text-body">{{ $user->name }}</span></strong>
+                            </div>
+                            <div class="nk-tb-col">
+                                <span class="text-body">{{ date('m/d/Y | h:i ', strtotime($user->created_at)) }}</span>
                             </div>
                             <div class="nk-tb-col text-right">
                                 <span class="text-body">{{ $user->email }}</span>
                             </div>
                         </div>
                         @endforeach
+                        @else
+                            <div class="nk-tb-item bg-lighter p-2">
+                                <div class="nk-tb-col">
+                                    <span class="text-body ">No employee is registered currently.</span>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-                @else
-                <div class="nk-tb-item bg-lighter p-2">
-                    <div class="nk-tb-col">
-                        <span class="text-body ">No employee is registered currently.</span>
-                    </div>
-                </div>
-                @endif
+
                 {{-- <div class="card-inner-sm border-top text-center d-sm-none">
                     <a href="#" class="btn btn-link btn-block">See History</a>
                 </div> --}}

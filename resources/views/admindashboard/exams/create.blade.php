@@ -104,9 +104,9 @@
     $(document).on("click",".add_question, .add_mcq",function() {
         i++;
         $('.questions').append(`
-            <div class="col-lg-12 show_question my-4">
-                <div class="form-group">
-                    <label class="form-label mt-2">Enter Question:</label>
+            <div class="col-lg-12 show_question">
+                <div class="form-group mt-4">
+                    <label class="form-label ">Enter Question:</label>
                     <div class="row mt-2">
                         <div class="col-md-11">
                             <input type="text" name="question_title[]" class="form-control border border-gray add-row" placeholder="enter your question" id="" required>
@@ -120,32 +120,34 @@
                     <div class="row ">
                         <div class="col-md-6 ">
                             <span class="d-inline-block">Question Time:</span>
-                            <input type="number" min=0 name="question_timer[]" class="form-control border border-light mt-2 d-inline-block" placeholder="Add question time">
+                            <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" min=0 name="question_timer[]" class="form-control border border-light mt-2 d-inline-block" placeholder="Add question time" required>
                         </div>
                         <div class="col-md-6">
                             <span class="d-inline-block">Enter Question Marks:</span>
-                            <input type="number" min=0 name="question_marks[]" class="form-control border border-light mt-2 d-inline-block" placeholder="Marks for question" required>
+                            <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" min=0 name="question_marks[]" class="form-control border border-light mt-2 d-inline-block" placeholder="Marks for question" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" name="option_1[]" class="form-control-sm border border-light mt-2" placeholder="option 1">
+                            <input type="text" name="option_1[]" class="form-control-sm border border-light mt-2" placeholder="option 1" required>
                             <input type="checkbox" class="check" name="answer_${i}[]" value="">
                             <small>Correct answer</small>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="option_2[]" class="form-control-sm border border-light mt-2" placeholder="option 2">
+                            <input type="text" name="option_2[]" class="form-control-sm border border-light mt-2" placeholder="option 2" required>
                             <input type="checkbox" class="check" name="answer_${i}[]" value="">
                             <small>Correct answer</small>
                         </div>
                         <br>
                         <div class="col-md-6">
-                            <input type="text" name="option_3[]" class="form-control-sm border border-light mt-2" placeholder="option 3">
+                            <input type="text" name="option_3[]" class="form-control-sm border border-light mt-2" placeholder="option 3" required>
                             <input type="checkbox" class="check" name="answer_${i}[]" value="">
                             <small>Correct answer</small>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="option_4[]" class="form-control-sm border border-light mt-2" placeholder="option 4">
+                            <input type="text" name="option_4[]" class="form-control-sm border border-light mt-2" placeholder="option 4" required>
                             <input type="checkbox" class="check" name="answer_${i}[]" value="">
                             <small>Correct answer</small>
                         </div>

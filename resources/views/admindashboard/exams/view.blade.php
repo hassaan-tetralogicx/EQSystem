@@ -115,7 +115,8 @@
                                                     </div>
                                                     <div class="tab-pane" id="mcqs">
                                                         <h6 class="title mb-2">Add Options</h6>
-                                                        <div class="row">
+                                                        {{-- <br> --}}
+                                                        <div class="row mt-4">
                                                             <div class="col-md-6">
                                                                 <input type="text" name="option_1" class=" form-control-sm border border-light" placeholder="option 1" required>
                                                                 <input type="checkbox" class="check" name="answer[]" value="" >
@@ -385,6 +386,14 @@
                             <div class="tab-pane mt-5 text-body" id="invite_employees">
                                 <h5>Invite Employees</h5>
                                 <small>Invite the employees you want for the exam.</small>
+                                @if (\Session::has('error'))
+                                    <div class="alert alert-pro alert-info">
+                                        <div class="alert-text">
+                                            {{-- <h6>Oops!</h6> --}}
+                                            <p>{!! \Session::get('error') !!}</p>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-md-12">
                                         <form action="{{ route('exams.invite', $exam->id) }}" method="GET">
@@ -414,17 +423,17 @@
                                         </div>
                                         <?php $i=1 ?>
                                         @foreach ($exam->users->unique() as $user)
-                                        <div class="nk-tb-item text-body">
-                                            <div class="nk-tb-col">
-                                                <strong><span >{{ $i++ }}</span></strong>
+                                            <div class="nk-tb-item text-body">
+                                                <div class="nk-tb-col">
+                                                    <strong><span >{{ $i++ }}</span></strong>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <strong><span >{{ $user->name }}</span></strong>
+                                                </div>
+                                                <div class="nk-tb-col tb-col-md text-right">
+                                                    <span >{{ $user->email }}</span>
+                                                </div>
                                             </div>
-                                            <div class="nk-tb-col">
-                                                <strong><span >{{ $user->name }}</span></strong>
-                                            </div>
-                                            <div class="nk-tb-col tb-col-md text-right">
-                                                <span >{{ $user->email }}</span>
-                                            </div>
-                                        </div>
                                         @endforeach
                                     </div>
                                 @else

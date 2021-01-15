@@ -5,19 +5,25 @@
 <div class="card bg-default mt-5">
     <form action="{{ route('employees.check', [ 'exam_id' => $exam->id, 'question_id' => $question->id]) }}" method="get">
         @csrf
-    <div class="card-header bg-lighter text-center d-inline-block">
-        <strong class="mr-5"> Exam Title: </strong>
-        <strong> {{ $exam->title}} </strong>
-
+    <div class="card-header d-inline-block w-100">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-azure float-right"> Exam Title: </strong>
+            </div>
+            <div class="col-md-6">
+            <span class="text-azure"> {{ $exam->title}} </span>
+            </div>
+        </div>
     </div>
     <div class="countdown d-inline-block mt-2 float-right"></div>
     <input type="hidden" id="question_time" value="{{ $mcq->question_timer }}">
     <div class="card-inner">
         @if (\Session::has('error'))
-            <div class="alert alert-danger">
-                <ul>
-                    <li>{!! \Session::get('error') !!}</li>
-                </ul>
+            <div class="alert alert-pro alert-danger">
+                <div class="alert-text">
+                    <h6>SORRY!</h6>
+                    <p>{!! \Session::get('error') !!}</p>
+                </div>
             </div>
         @endif
         <div class="container mt-sm-5 my-1">
@@ -26,7 +32,6 @@
                     <b class="py-2 h5 d-inline-block">Q. {{ $question->title }}</b>
                     <div id="timer" class="countdown py-2"></div>
                 </div>
-                {{-- <input type="hidden" id="question_time" value="{{ $question->timer }}"> --}}
                 <div class="pt-sm-0" id="options">
                     @foreach ($question->mcqs as $mcq)
                         <label class="options"> <span class="ml-5"> {{ $mcq->name }}</span>
@@ -76,7 +81,7 @@
     }
 
     .options {
-        background-color: rgb(245 246 250);
+        background-color: rgb(237, 237, 237, 1);
         position: relative;
         border-radius: 20px;
         padding: 10px 10px;

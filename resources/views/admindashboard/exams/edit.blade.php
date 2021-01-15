@@ -54,7 +54,7 @@
                                     <label class="form-label" for="start_date">Start Date</label>
                                     <div class="form-control-wrap">
                                         {{-- <span>{{ $exam->start_time }}</span> --}}
-                                        <input type="datetime-local" id="start_date" name="start_time" value="{{ $exam->start_time }}" class="form-control  @error('start_time') is-invalid @enderror" required>
+                                        <input type="datetime-local" id="start_date" name="start_time" value="{{ $exam->start_time }}" class="date form-control  @error('start_time') is-invalid @enderror" required>
                                         @error('start_time')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -66,7 +66,7 @@
                                     <label class="form-label" for="end_date">End Date</label>
                                     <div class="form-control-wrap">
                                         {{-- <p>{{ $exam->end_time }}</p> --}}
-                                        <input type="datetime-local" name="end_time" value="{{ $exam->end_time }}" class="form-control @error('end_time') is-invalid @enderror" id="end_date" required>
+                                        <input type="datetime-local" name="end_time" value="{{ $exam->end_time }}" class="  form-control @error('end_time') is-invalid @enderror" id="end_date" required>
                                         @error('end_time')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -117,11 +117,13 @@
                                             <div class="row ">
                                                 <div class="col-md-6 ">
                                                     <span class="d-inline-block">Question Time:</span>
-                                                    <input type="number" min=0 name="question_timer[]" value="{{ $question->timer }}" class="form-control border border-light mt-2 d-inline-block" placeholder="Add question time">
+                                                    <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+                                                    event.keyCode === 46 ? true : !isNaN(Number(event.key))" min=0 name="question_timer[]" value="{{ $question->timer }}" class="form-control border border-light mt-2 d-inline-block" placeholder="Add question time">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <span class="d-inline-block">Enter Question Marks:</span>
-                                                    <input type="number" min=0 name="question_marks[]" value="{{ $question->question_marks }}" class="form-control border border-light mt-2 d-inline-block" placeholder="Marks for question" required>
+                                                    <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+                                                    event.keyCode === 46 ? true : !isNaN(Number(event.key))" min=0 name="question_marks[]" value="{{ $question->question_marks }}" class="form-control border border-light mt-2 d-inline-block" placeholder="Marks for question" required>
                                                 </div>
                                             </div>
                                             <br>
@@ -163,8 +165,8 @@
         i++;
         $('.questions').append(`
             <div class="col-lg-12 show_question px-0">
-                <div class="form-group mt-2">
-                    <label class="form-label mt-2" >Enter Question:</label>
+                <div class="form-group">
+                    <label class="form-label mt-4" >Enter Question:</label>
                     <div class="row">
                         <div class="col-md-11">
                             <input type="text" name="question_title[]" class="form-control border border-gray add-row" placeholder="enter your question" id="" required>
@@ -178,11 +180,13 @@
                     <div class="row ">
                         <div class="col-md-6 ">
                             <span class="d-inline-block">Question Time:</span>
-                            <input type="number" min=0 name="new_question_timer[]" class="form-control border border-light mt-2 d-inline-block" placeholder="Add question time">
+                            <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" min=0 name="new_question_timer[]" class="form-control border border-light mt-2 d-inline-block" placeholder="Add question time" required>
                         </div>
                         <div class="col-md-6">
                             <span class="d-inline-block">Enter Question Marks:</span>
-                            <input type="number" min=0 name="new_question_marks[]" class="form-control border border-light mt-2 d-inline-block" placeholder="Marks for question" required>
+                            <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" min=0 name="new_question_marks[]" class="form-control border border-light mt-2 d-inline-block" placeholder="Marks for question" required>
                         </div>
                     </div>
                     <br>

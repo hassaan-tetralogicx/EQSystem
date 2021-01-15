@@ -33,11 +33,11 @@
                         <div class="nk-header-menu" data-content="headerNav">
                             <ul class="nk-menu nk-menu-main  px-0">
                                 @role('employee')
-                                <li class="nk-menu-item pl-0">
+                                {{-- <li class="nk-menu-item pl-0">
                                     <a href="{{ route('home') }}" class="navbar-btn nk-menu-link">
                                         <span class="nk-menu-text">Home</span>
                                     </a>
-                                </li><!-- .nk-menu-item -->
+                                </li><!-- .nk-menu-item --> --}}
 
                                 <li class="nk-menu-item has-sub">
                                     <a href="{{ route('employees.index') }}" class="nk-menu-link ">
@@ -45,6 +45,7 @@
                                     </a>
                                     <!-- .nk-menu-sub -->
                                 </li><!-- .nk-menu-item -->
+
                                 <li class="nk-menu-item ">
                                     <a href="{{ route('employees.previous-record') }}" class="nk-menu-link ">
                                         <span class="nk-menu-text">Previous Record</span>
@@ -75,6 +76,12 @@
                                         </li><!-- .nk-menu-item -->
                                     </ul>
                                 </li>
+                                <li class="nk-menu-item has-sub">
+                                    <a href="{{ route('exams.exams-taken') }}" class="nk-menu-link ">
+                                        <span class="nk-menu-text">Exams Taken</span>
+                                    </a>
+                                    <!-- .nk-menu-sub -->
+                                </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="{{ route('admin.subject') }}" class="nk-menu-link ">
                                         <span class="nk-menu-text">Subjects</span>

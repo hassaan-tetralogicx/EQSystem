@@ -27,22 +27,14 @@ class EmployeeController extends Controller
     {
         $user = Auth::user();
         // dd($user);
-        $exams = $user->exams()->where('user_id', $user->id)->whereNotIn('exam_status', ['completed'])->get();
-        // dd($exams);
-        // $user_exams = Result::where('user_id',)
-        // $attempted = Result::where('user_id', $user->id)->get();
-        // dd($attempted);
-        // dd($exams);
-        // dd($user);
-        return view('userdashboard.exams.index')->with('exams', $exams);
+        $exam_status = $user->exams()->where('exam_status', '!=', 'completed')->get();
+        // dd($exam_status);
+        return view('userdashboard.exams.index')->with('exams', $exam_status);
     }
     public function previous_record()
     {
         $user = Auth::user();
-        // $exams = $user->exams;
-        // // dd($exams);
-        // dd($user);
-        $exam_status = $user->exams()->where('user_id', $user->id)->where('exam_status', 'completed')->get();
+        $exam_status = $user->exams()->where('exam_status', 'completed')->get();
         // dd($exam_status);
         return view('userdashboard.exams.previous-record')->with('status', $exam_status);
     }
@@ -52,16 +44,7 @@ class EmployeeController extends Controller
         $user = Auth::user();
         $exam_result = Result::where('user_id', $user->id)->where('exam_id', $exam)->first();
         $exam_detail = Exam::find($exam_result->exam_id);
-        // dd($exam);
-        // dd($exam_title);
-        // dd($exam_details);
-        // dd($exam);
-        // $user = Auth::user();
-        // $exams = $user->exams;
-        // // dd($exams);
-        // dd($user);
-        // $exam_status = $user->exams()->where('user_id', $user->id)->where('exam_status', 'completed')->get();
-        // dd($exam_status);
+
         return view('userdashboard.exams.previous-exam-result')->with(['exam_result' => $exam_result, 'exam' => $exam_detail] );
     }
 
@@ -161,49 +144,25 @@ class EmployeeController extends Controller
                     if($user_answers != null ){
                         foreach($user_answers as $ans){
                             $answers = $answers .$ans.',';
-                            // dd($answers);
                         }
-                        // dd($correct_result);
-                    $correct_admin_answers = Question::where('id', $question_id)->where('exam_id', $exam_id)->pluck('correct_answer_id')->toArray();
-                    $correct_employee_answers = explode(',', $answers); // employee answers string explode
-                    $correct_admin_answer_array = implode(',', $correct_admin_answers); // admin answers array implode to string
-                    $correct_admin_answers = explode(',', $correct_admin_answer_array); // admin answers string explode
-                    // $total_admin_answer = count($correct_admin_answers) - 1;
-                    // $total_employee_answer = count($correct_employee_answers) - 1;
-                    // dd($total_admin_answer, $total_employee_answer);
+                        $correct_admin_answers = Question::where('id', $question_id)->where('exam_id', $exam_id)->pluck('correct_answer_id')->toArray();
+                        $correct_employee_answers = explode(',', $answers); // employee answers string explode
+                        $correct_admin_answer_array = implode(',', $correct_admin_answers); // admin answers array implode to string
+                        $correct_admin_answers = explode(',', $correct_admin_answer_array); // admin answers string explode
 
-                    // dd($correct_admin_answer_array, $correct_admin_answers, $correct_employee_answers);
-                    // $ch = in_array($correcty, $correct);
-                    $check = array_intersect($correct_employee_answers, $correct_admin_answers);
-                    // dd($check);
+                        $check = array_intersect($correct_employee_answers, $correct_admin_answers);
 
-                    // $count = ;'
-                    $total_correct_admin_answers = count($correct_admin_answers) - 1 ;
-                    $total_question_marks = $question->question_marks;
-                    $total_employee_correct = count($check) - 1; //space minus
-                    if($total_employee_correct != 0){
-                        $obtained_question_marks = $total_question_marks / $total_correct_admin_answers * $total_employee_correct;
-                        $record->obtained_question_marks = $obtained_question_marks;
-                    }
+                        $total_correct_admin_answers = count($correct_admin_answers) - 1 ;
+                        $total_question_marks = $question->question_marks;
+                        $total_employee_correct = count($check) - 1; //space minus
+                            if($total_employee_correct != 0){
+                                $obtained_question_marks = $total_question_marks / $total_correct_admin_answers * $total_employee_correct;
+                                $record->obtained_question_marks = $obtained_question_marks;
+                            }
                     else {
                         $record->obtained_question_marks = 0;
                     }
-                    // dd($obtained_question_marks);
-                    // if($total_correct == $total_admin_answer){
-
-                    // }
-                    // else if (condition) {
-                    //     # code...
-                    // }
-
                     }
-
-                    // if( in_array( $answers ,$correct ) )
-                    //     {
-                    //         echo "has bla";
-                    //     }
-
-                    // dd($answers, $correct);
 
                 $record->answer = $answers;
                 $record->check = true;
@@ -273,32 +232,6 @@ class EmployeeController extends Controller
                     }
                 }
             }
-            // dd( $correct,$incorrect, $total);
-            // $user_answer = json_decode($user_answer[0]);
-            // dump($user_answer, $admin_answer);
-            // $i = 0;
-            // $correct = 0;
-            // $incorrect = 0;
-            // $total = count($exam->questions);
-            // dd($admin_answer);
-            // foreach ($user_answer as $index => $user_ans){
-            //     // dump($answer[2]);
-            //     // $user_answer = explode(',', $user_ans);
-            //     // dump($user_answer);
-            //     // $admin_ans = explode(',', $admin_answer[$index]);
-            //     // dump($admin_ans);
-            //     $diff = in_array($user_ans, $admin_answer);
-            //     // dump($diff);
-            //     if($diff == true){
-            //         $correct++;
-            //     }
-            //     else {
-            //         $incorrect++;
-            //     }
-            // }
-            // dd($correct, $incorrect);
-            // $obtained_exam_marks = Result::where('exam_id', $exam->id)->where('user_id', auth()->user()->id)->pluck('obtained_exam_marks')->first();
-
 
             $obtained_exam_marks = Mcq_result::where('exam_id', $exam->id)->where('user_id', auth()->user()->id)->pluck('obtained_question_marks')->toArray();
             $obtained_exam_marks = array_sum($obtained_exam_marks);
@@ -327,9 +260,10 @@ class EmployeeController extends Controller
                 $result->wrong_answer = $incorrect;
                 $result->grade = $grade;
                 $result->save();
-                $user = User::where('id', auth()->user()->id)->first();
-                // dd($user);
-                $check = $user->exams()->attach($exam->id, ['exam_status' => 'completed']);
+                $user = Auth::user();
+                // dump($user);
+                $check = $user->exams()->updateExistingPivot($exam->id, ['exam_status' => 'completed']);
+                // $check-save();
                 // dd($check);
             }
             $existing_result = Result::where('user_id', auth()->user()->id)->where('exam_id', $exam->id);

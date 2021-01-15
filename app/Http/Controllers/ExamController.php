@@ -309,6 +309,14 @@ class ExamController extends Controller
         return redirect('/exams');
     }
 
+    public function exams_taken(){
+        $exams_taken = Result::all();
+        // dd($exams_taken);
+        // $taken = Exam::where('id', $exams_taken->exam_id)->get();
+        // dd($taken);
+        return view('admindashboard.exams.exams-taken')->with('exams_taken', $exams_taken);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -339,6 +347,12 @@ class ExamController extends Controller
         ]);
         $exam = Exam::find($exam);
         foreach($request->select_users as $select_user){
+            // dd($select_user);
+            $find_user = User::find($select_user);
+            // dd($find_user->exams()->where('exam_id', $exam->id)->first());
+            if($find_user->exams()->where('exam_id', $exam->id)->first()){
+                return redirect()->back()->with('success','User already invited');
+            }
             $user = User::find($select_user);
             $user->notify(new ExamNotification($exam));
             $user->exams()->attach($exam);
@@ -355,7 +369,5 @@ class ExamController extends Controller
         $result = Result::where('user_id', $user_id)->where('exam_id', $exam_id)->get();
         // dd($result);
         return view('admindashboard.exams.view-result')->with([ 'exam' => $exam, 'result' => $result, 'user' => $user]);
-
-
     }
 }

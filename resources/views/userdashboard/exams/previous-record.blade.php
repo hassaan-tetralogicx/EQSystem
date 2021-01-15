@@ -8,18 +8,18 @@
                 <div class="card-inner">
                     <div class="card-title-group">
                         <div class="card-title">
-                            <h5 class="text-body">Attempted Exams Record:</h5>
+                            <h5 class="text-body">Attempted Exams Record</h5>
                         </div>
                         <div class="card-tools">
-                            <a href="/employees" class="btn btn-dim btn-primary ml-2">Unattempted Exams</a>
+                            <a href="/employees" class="btn btn-dim btn-primary ml-2">Assigned Exams</a>
                         </div>
                     </div>
                 </div>
                 <?php $user = auth()->user(); $i = 1; ?>
                 {{-- // dd($c) --}}
                     <div class="card-inner p-0 border-top">
-                    @if (count($user->exams()->where('user_id', $user->id)->where('exam_status', 'completed')->get()) > 0)
                         <div class="nk-tb-list nk-tb-orders">
+                            @if (count($user->exams()->where('user_id', $user->id)->where('exam_status', 'completed')->get()) > 0)
                             <div class="nk-tb-item nk-tb-head">
                                 <div class="nk-tb-col"><span>#</span></div>
                                 <div class="nk-tb-col tb-col-lg"><span>Exam Title</span></div>
@@ -55,10 +55,14 @@
                                 </div>
                             @endforeach
                             {{-- @endforeach --}}
+                            @else
+                                <div class="nk-tb-item bg-lighter p-2">
+                                    <div class="nk-tb-col">
+                                        <span class="text-body">You don't have any previous exam record.</span>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
-                    @else
-                        <p>no record exists</p>
-                    @endif
                     </div>
 
 

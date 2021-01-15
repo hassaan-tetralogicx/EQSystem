@@ -90,12 +90,14 @@
                             </div>
                         </div>
                     </div>
-                    @if (count($subjects)>0)
+
                     <div class="card-inner p-0 border-top">
                         <div class="nk-tb-list nk-tb-orders">
+                            @if (count($subjects)>0)
                             <div class="nk-tb-item nk-tb-head">
                                 <div class="nk-tb-col"><span>Subject Title</span></div>
                                 <div class="nk-tb-col tb-col-md"><span>Subject Description</span></div>
+                                <div class="nk-tb-col tb-col-md"><span>Created at</span></div>
                                 <div class="nk-tb-col text-right"><span>Action</span></div>
                             </div>
                             @foreach ($subjects as $subject)
@@ -107,6 +109,11 @@
                                 <div class="nk-tb-col tb-col-md">
                                     <div>
                                         <span class="text-body">{{ $subject->description }}</span>
+                                    </div>
+                                </div>
+                                <div class="nk-tb-col tb-col-md">
+                                    <div>
+                                        <span class="text-body">{{ date('m/d/Y | h:i', strtotime($subject->description)) }}</span>
                                     </div>
                                 </div>
                                 <div class="nk-tb-col text-right">
@@ -171,15 +178,16 @@
                                 </div>
                             </div>
                             @endforeach
+                            @else
+                                <div class="nk-tb-item bg-lighter p-2">
+                                    <div class="nk-tb-col">
+                                        <span class="text-body">No subject is registered currently.</span>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                    @else
-                        <div class="nk-tb-item bg-lighter p-2">
-                            <div class="nk-tb-col">
-                                <span class="text-body">No subject is registered currently.</span>
-                            </div>
-                        </div>
-                    @endif
+
                 </div><!-- .card -->
             </div>
         </div>

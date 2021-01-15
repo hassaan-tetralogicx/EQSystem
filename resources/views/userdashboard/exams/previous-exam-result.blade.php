@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="profile-ud wider">
                                         <span class="profile-ud-label">Total Exam Marks</span>
-                                        <span class="profile-ud-value">{{ $exam_title-> }}</span>
+                                        <span class="profile-ud-value">{{ $exam->total_exam_marks }}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-2"></div>

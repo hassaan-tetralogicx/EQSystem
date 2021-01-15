@@ -10,7 +10,7 @@
                     <div class="nk-block">
                         <div class="nk-block-head">
                             <h5 class="title">Your Assigned Exam!</h5>
-                            <p>Basic info, like your name and address, that you use on Nio Platform.</p>
+                            <p>You're assigned this exam by admin, click start button to start exam.</p>
                         </div><!-- .nk-block-head -->
                         <div class=" row">
                             <div class="col-md-12">

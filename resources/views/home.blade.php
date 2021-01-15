@@ -41,7 +41,7 @@
         </div><!-- .col -->
         <div class="col-md-3">
             <div class="card card-bordered">
-                <a href="">
+                <a href="{{ route('exams.exams-taken') }}">
                 <div class="card-inner">
                     <div class="card-title-group align-start mb-0">
                         <div class="card-title">
@@ -96,7 +96,7 @@
                                     <strong><span class="text-body">{{ $new_user->name }}</span></strong>
                                     </div>
                                     <div class="nk-tb-col">
-                                        <span class="text-body">{{ $new_user->created_at }}</span>
+                                        <span class="text-body">{{ date('m/d/Y | h:i', strtotime($new_user->created_at)) }}</span>
                                     </div>
                                     <div class="nk-tb-col text-right">
                                         <span class="text-body">{{ $new_user->email }}</span>
@@ -131,18 +131,30 @@
                         <div class="card-inner p-0 border-top">
                             <div class="nk-tb-list nk-tb-orders">
                                 <div class="nk-tb-item nk-tb-head">
+                                    <div class="nk-tb-col"><span>#</span></div>
                                     <div class="nk-tb-col"><span>Exam Title</span></div>
                                     <div class="nk-tb-col"><span>Employee name</span></div>
+                                    <div class="nk-tb-col"><span>Attempted at</span></div>
                                     <div class="nk-tb-col text-right"><span>Action</span></div>
                                 </div>
+                                <?php $j = 1 ?>
                                 @foreach ($new_results as $new_result)
                                 <div class="nk-tb-item">
                                     @if ($new_result->exam != null)
                                     <div class="nk-tb-col">
-                                        <span class="text-body">{{ $new_result->exam->title }}</span>
+                                        <span class="text-body">{{ $j++ }}</span>
                                     </div>
                                     <div class="nk-tb-col">
-                                        <strong><span class="text-body"></span>{{ $new_result->user->name }}</strong>
+                                        <strong><span class="text-body">{{ $new_result->exam->title }}</span></strong>
+                                    </div>
+                                    {{-- <div class="nk-tb-col">
+                                        <span class="text-body">{{ $new_result->exam->title }}</span>
+                                    </div> --}}
+                                    <div class="nk-tb-col">
+                                        <span class="text-body">{{ $new_result->user->name }}</span>
+                                    </div>
+                                    <div class="nk-tb-col">
+                                        <span class="text-body">{{ date('m/d/Y | h:i', strtotime($new_result->created_at)) }}</span>
                                     </div>
                                     <div class="nk-tb-col text-right">
                                         <div class="dropdown">
@@ -168,79 +180,6 @@
         </div><!-- .col -->
     </div>
 </div>
-
-@endrole
-
-@role('employee')
-
-<div class="card card-bordered card-full">
-    <div class="card-inner">
-        <div class="card-title-group">
-            <div class="card-title">
-                <h5 class="text-body">{{ __('Welcome, You are logged in!') }}</h5>
-            </div>
-            <div class="card-tools">
-            </div>
-        </div>
-    </div>
-</div>
-
-    {{-- <div class="nk-block">
-        <div class="row">
-            <div class="col-xxl-8">
-                <div class="card card-bordered card-full">
-                    <div class="card-inner">
-                        <div class="card-title-group">
-                            <div class="card-title">
-                                <h5 class="text-body">My Exams</h5>
-                            </div>
-                            <div class="card-tools">
-                            </div>
-                        </div>
-                    </div>
-                        <div class="card-inner p-0 border-top">
-                            <div class="nk-tb-list nk-tb-orders">
-                                <div class="nk-tb-item nk-tb-head">
-                                    <div class="nk-tb-col"><span>#</span></div>
-                                    <div class="nk-tb-col tb-col-lg"><span>Exam Title</span></div>
-                                    <div class="nk-tb-col tb-col-md"><span>Subject</span></div>
-
-                                    <div class="nk-tb-col text-right"><span>Action</span></div>
-                                </div>
-
-
-                                <div class="nk-tb-item text-body">
-                                    <div class="nk-tb-col">
-                                        <strong><span ></span></strong>
-                                    </div>
-                                    <div class="nk-tb-col tb-col-lg">
-                                        <span ></span>
-                                    </div>
-                                    <div class="nk-tb-col tb-col-md">
-                                        <span ></span>
-                                    </div>
-
-                                    <div class="nk-tb-col text-right">
-                                        <div class="dropdown">
-                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                                <ul class="link-list-plain">
-                                                    <li><a href="">View</a></li>
-                                                    <li><a href="">Edit</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                </div><!-- .card -->
-            </div>
-        </div>
-    </div> --}}
 
 @endrole
 @endsection

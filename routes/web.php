@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home')->middleware('redirect_middleware');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('redirect_middleware');
 
 // Route::get('/home', 'Homecontroller@index');
 Route::get('/show', 'AdminController@show')->name('admin.show');
@@ -44,6 +44,7 @@ Route::post('questions/update_time/{exam_id}/{question_id}', 'QuestionController
 Route::resource('exams', 'ExamController');
 Route::get('exam/subjective', 'ExamController@subjective')->name('exams.subjective');
 Route::get('exam/result/{user_id}/{exam_id}', 'ExamController@result_view')->name('result.view');
+Route::get('exam/exams-taken', 'ExamController@exams_taken')->name('exams.exams-taken');
 Route::get('exam/question/{id}', 'ExamController@delete_question');
 Route::get('/invite/{id}', 'ExamController@invite')->name('exams.invite');
 

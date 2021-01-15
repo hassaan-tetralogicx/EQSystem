@@ -225,7 +225,9 @@ class QuestionController extends Controller
         foreach($question->mcqs as $mcq){
             $mcq->delete();
         }
-        $exam->total_exam_marks = $exam->total_exam_marks - $question->question_marks;
+        if($exam->total_exam_marks != 0){
+            $exam->total_exam_marks = $exam->total_exam_marks - $question->question_marks;
+        }
         $exam->save();
         $question->delete();
 

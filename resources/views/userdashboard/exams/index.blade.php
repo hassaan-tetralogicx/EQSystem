@@ -10,16 +10,17 @@
                 <div class="card-inner">
                     <div class="card-title-group">
                         <div class="card-title">
-                            <h5 class="text-body">My Exams</h5>
+                            <h5 class="text-body">Assigned Exams</h5>
                         </div>
                         <div class="card-tools">
-                            <a href="" class="btn btn-dim btn-primary ml-2">Result Record</a>
+                            <a href="{{ route('employees.previous-record') }}" class="btn btn-dim btn-primary ">Previous Exam Record</a>
                         </div>
                     </div>
                 </div>
                 {{-- @if (count($exams) > 0) --}}
-                    <div class="card-inner p-0 border-top">
-                        <div class="nk-tb-list nk-tb-orders">
+                <div class="card-inner p-0 border-top">
+                    <div class="nk-tb-list nk-tb-orders">
+                        @if (count($exams) > 0)
                             <div class="nk-tb-item nk-tb-head">
                                 <div class="nk-tb-col"><span>#</span></div>
                                 <div class="nk-tb-col tb-col-lg"><span>Exam Title</span></div>
@@ -29,61 +30,62 @@
                                 {{-- <div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div> --}}
                                 <div class="nk-tb-col text-right"><span>Action</span></div>
                             </div>
+
                             <?php $i=1 ?>
                             @foreach ($exams->unique() as $exam)
-                            <div class="nk-tb-item text-body">
-                                <div class="nk-tb-col">
-                                    <span>{{ $i++ }}</span>
-                                </div>
-                                <div class="nk-tb-col tb-col-lg">
-                                    <strong><span >{{ $exam->title }}</span></strong>
-                                </div>
-                                <div class="nk-tb-col tb-col-md">
-                                    <span >{{ $exam->subject->title }}</span>
-                                </div>
+                                <div class="nk-tb-item text-body">
+                                    <div class="nk-tb-col">
+                                        <span>{{ $i++ }}</span>
+                                    </div>
+                                    <div class="nk-tb-col tb-col-lg">
+                                        <strong><span >{{ $exam->title }}</span></strong>
+                                    </div>
+                                    <div class="nk-tb-col tb-col-md">
+                                        <span >{{ $exam->subject->title }}</span>
+                                    </div>
 
-                                <div class="nk-tb-col text-right">
-                                    <div class="dropdown">
-                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                            <ul class="link-list-plain">
-                                                <li><a href="{{ route('employees.show', $exam->id) }}">View</a></li>
-                                            </ul>
-                                        </div>
-                                        {{-- <div class="modal fade" tabindex="-1" id="deletemodal_{{ $exam->id }}">
-                                            <div class="modal-dialog modal-sm" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Are you sure?</h5>
-                                                    </div>
-                                                    <form action="{{ route('exams.destroy', $exam->id) }}" method="POST">
-                                                        @method('DELETE')
-                                                        @csrf
-
-                                                        <div class="modal-body">
-                                                            <p class="text-left"> You're about to delete your record</p>
-                                                        </div>
-                                                        <div class="modal-footer bg-light">
-                                                            <button type="button" class="btn btn-dim btn-primary btn-sm" data-dismiss="modal">Cancel</button>
-                                                            <button type="submit" class="btn btn-dim btn-danger btn-sm">Delete</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                    <div class="nk-tb-col text-right">
+                                        <div class="dropdown">
+                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
+                                                <ul class="link-list-plain">
+                                                    <li><a href="{{ route('employees.show', $exam->id) }}">View</a></li>
+                                                </ul>
                                             </div>
-                                        </div> --}}
+                                            {{-- <div class="modal fade" tabindex="-1" id="deletemodal_{{ $exam->id }}">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Are you sure?</h5>
+                                                        </div>
+                                                        <form action="{{ route('exams.destroy', $exam->id) }}" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+
+                                                            <div class="modal-body">
+                                                                <p class="text-left"> You're about to delete your record</p>
+                                                            </div>
+                                                            <div class="modal-footer bg-light">
+                                                                <button type="button" class="btn btn-dim btn-primary btn-sm" data-dismiss="modal">Cancel</button>
+                                                                <button type="submit" class="btn btn-dim btn-danger btn-sm">Delete</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
-                        </div>
-                    </div>
-                {{-- @else
-                <div class="nk-tb-item bg-lighter p-2">
-                    <div class="nk-tb-col">
-                        <span class="text-body ">No exam is created currently.</span>
+                        @else
+                            <div class="nk-tb-item bg-lighter p-2">
+                                <div class="nk-tb-col">
+                                    <span class="text-body">You don't have any assigned exam currently.</span>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-                @endif --}}
             </div><!-- .card -->
         </div>
     </div>

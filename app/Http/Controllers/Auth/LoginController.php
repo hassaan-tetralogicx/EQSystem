@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -18,7 +20,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+    // use HasRoles;
     use AuthenticatesUsers;
 
     /**
@@ -27,7 +29,21 @@ class LoginController extends Controller
      * @var string
      */
     // if(Auth::user())
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+
+    // public function redirectTo()
+    // {
+    //     // dd(Auth::user());
+    //     if(Auth::user()->hasRole('admin')){
+    //         // dd('adm');
+    //         return route('home');
+    //     }
+    //     else {
+    //         // dd('emp');
+    //         return route('employees.index');
+    //     }
+
+    // }
 
     /**
      * Create a new controller instance.
