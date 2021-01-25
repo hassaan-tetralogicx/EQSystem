@@ -26,9 +26,13 @@ class EmployeeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        // dd($user);
+//         dd($user->exams);
+//        $find_user->exams()->where('exam_id', $exam->id)->first()
+//        $var = $user->exams()->where('user_id', $user->id)->where()->first()->pivot->exam_status;
+//        $var =$user->exams()->where('user_id', $user->id)->first()->pivot->exam_status;
+//        dd($var);
         $exam_status = $user->exams()->get();
-        dd($exam_status);
+//        dd($exam_status);
         // dd($exam_status);
         return view('userdashboard.exams.index')->with('exams', $exam_status);
     }
@@ -264,7 +268,7 @@ class EmployeeController extends Controller
                 $user = Auth::user();
                 // dump($user);
                 $check = $user->exams()->updateExistingPivot($exam->id, ['exam_status' => 'completed']);
-                // $check-save();
+                $check->save();
                 // dd($check);
             }
             $existing_result = Result::where('user_id', auth()->user()->id)->where('exam_id', $exam->id);

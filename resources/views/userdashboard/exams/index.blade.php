@@ -15,9 +15,10 @@
                         </div>
                     </div>
                 </div>
-                {{-- @if (count($exams) > 0) --}}
+                 @if (count($exams) > 0)
                 <div class="card-inner p-0 border-top">
                     <div class="nk-tb-list nk-tb-orders">
+<!--                        --><?php //dd($exams); ?>
                         @if (count($exams) > 0)
                             <div class="nk-tb-item nk-tb-head">
                                 <div class="nk-tb-col"><span>#</span></div>
@@ -30,8 +31,11 @@
                             </div>
 
                             <?php $i=1 ?>
-                            @foreach ($exams->unique() as $exam)
-                                <div class="nk-tb-item text-body">
+
+                            @foreach ($exams->unique() as  $exam)
+                                <?php $exams_status = $exam->pivot->exam_status; ?>
+                                @if($exams_status != 'completed')
+                                    <div class="nk-tb-item text-body">
                                     <div class="nk-tb-col">
                                         <span>{{ $i++ }}</span>
                                     </div>
@@ -74,6 +78,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                    @endif
                             @endforeach
                         @else
                             <div class="nk-tb-item bg-lighter p-2">
@@ -84,6 +89,7 @@
                         @endif
                     </div>
                 </div>
+                @endif
             </div><!-- .card -->
         </div>
     </div>
