@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                 @if (count($exams) > 0)
+{{--                 @if (count($exams) > 0)--}}
                 <div class="card-inner p-0 border-top">
                     <div class="nk-tb-list nk-tb-orders">
 <!--                        --><?php //dd($exams); ?>
@@ -32,53 +32,32 @@
 
                             <?php $i=1 ?>
 
-                            @foreach ($exams->unique() as  $exam)
+                            @foreach ($exams->unique() as $exam)
                                 <?php $exams_status = $exam->pivot->exam_status; ?>
                                 @if($exams_status != 'completed')
                                     <div class="nk-tb-item text-body">
-                                    <div class="nk-tb-col">
-                                        <span>{{ $i++ }}</span>
-                                    </div>
-                                    <div class="nk-tb-col tb-col-lg">
-                                        <strong><span >{{ $exam->title }}</span></strong>
-                                    </div>
-                                    <div class="nk-tb-col tb-col-md">
-                                        <span >{{ $exam->subject->title }}</span>
-                                    </div>
 
-                                    <div class="nk-tb-col text-right">
-                                        <div class="dropdown">
-                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                                <ul class="link-list-plain">
-                                                    <li><a href="{{ route('employees.show', $exam->id) }}">View</a></li>
-                                                </ul>
-                                            </div>
-                                            {{-- <div class="modal fade" tabindex="-1" id="deletemodal_{{ $exam->id }}">
-                                                <div class="modal-dialog modal-sm" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Are you sure?</h5>
-                                                        </div>
-                                                        <form action="{{ route('exams.destroy', $exam->id) }}" method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
-
-                                                            <div class="modal-body">
-                                                                <p class="text-left"> You're about to delete your record</p>
-                                                            </div>
-                                                            <div class="modal-footer bg-light">
-                                                                <button type="button" class="btn btn-dim btn-primary btn-sm" data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" class="btn btn-dim btn-danger btn-sm">Delete</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                        <div class="nk-tb-col">
+                                            <span>{{ $i++ }}</span>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-lg">
+                                            <strong><span >{{ $exam->title }}</span></strong>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-md">
+                                            <span >{{ $exam->subject->title }}</span>
+                                        </div>
+                                        <div class="nk-tb-col text-right">
+                                            <div class="dropdown">
+                                                <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
+                                                    <ul class="link-list-plain">
+                                                        <li><a href="{{ route('employees.show', $exam->id) }}">View</a></li>
+                                                    </ul>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                    @endif
+                                @endif
                             @endforeach
                         @else
                             <div class="nk-tb-item bg-lighter p-2">
@@ -89,7 +68,7 @@
                         @endif
                     </div>
                 </div>
-                @endif
+{{--                @endif--}}
             </div><!-- .card -->
         </div>
     </div>

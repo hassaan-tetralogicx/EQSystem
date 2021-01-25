@@ -268,7 +268,7 @@ class EmployeeController extends Controller
                 $user = Auth::user();
                 // dump($user);
                 $check = $user->exams()->updateExistingPivot($exam->id, ['exam_status' => 'completed']);
-                $check->save();
+//                $check->save();
                 // dd($check);
             }
             $existing_result = Result::where('user_id', auth()->user()->id)->where('exam_id', $exam->id);
@@ -281,6 +281,11 @@ class EmployeeController extends Controller
                 $result->wrong_answer = $incorrect;
                 $result->grade = $grade;
                 $result->save();
+
+//                $user = Auth::user();
+//                $check = $user->exams()->updateExistingPivot($exam->id, ['exam_status' => 'completed']);
+////                dd($check);
+//                $check->save();
 
 
             }
