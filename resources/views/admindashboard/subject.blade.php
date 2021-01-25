@@ -97,7 +97,7 @@
                             <div class="nk-tb-item nk-tb-head">
                                 <div class="nk-tb-col"><span>Subject Title</span></div>
                                 <div class="nk-tb-col tb-col-md"><span>Subject Description</span></div>
-                                <div class="nk-tb-col tb-col-md"><span>Created at</span></div>
+{{--                                <div class="nk-tb-col tb-col-md"><span>Created at</span></div>--}}
                                 <div class="nk-tb-col text-right"><span>Action</span></div>
                             </div>
                             @foreach ($subjects as $subject)
@@ -111,11 +111,11 @@
                                         <span class="text-body">{{ $subject->description }}</span>
                                     </div>
                                 </div>
-                                <div class="nk-tb-col tb-col-md">
-                                    <div>
-                                        <span class="text-body">{{ date('m/d/Y | h:i', strtotime($subject->description)) }}</span>
-                                    </div>
-                                </div>
+{{--                                <div class="nk-tb-col tb-col-md">--}}
+{{--                                    <div>--}}
+{{--                                        <span class="text-body">{{ date('m/d/Y | h:i', strtotime($subject->description)) }}</span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="nk-tb-col text-right">
                                     <div class="dropdown">
                                         <a class="text-primary dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>

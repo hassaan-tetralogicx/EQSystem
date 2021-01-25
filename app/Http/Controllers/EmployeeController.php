@@ -28,6 +28,7 @@ class EmployeeController extends Controller
         $user = Auth::user();
         // dd($user);
         $exam_status = $user->exams()->where('exam_status', '!=', 'completed')->get();
+        dd($exam_status);
         // dd($exam_status);
         return view('userdashboard.exams.index')->with('exams', $exam_status);
     }

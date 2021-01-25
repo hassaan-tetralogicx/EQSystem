@@ -1,8 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
-
 <div class="nk-block">
     <div class="row">
         <div class="col-xxl-8">
